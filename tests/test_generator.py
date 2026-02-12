@@ -245,16 +245,18 @@ class TestParseColor(unittest.TestCase):
 class TestBuildParser(unittest.TestCase):
     """Tests for CLI argument parser."""
 
-    def test_default_args(self) -> None:
+    def test_generate_default_args(self) -> None:
         parser = build_parser()
-        args = parser.parse_args([])
+        args = parser.parse_args(["generate"])
+        self.assertEqual(args.mode, "generate")
         self.assertEqual(args.shape, "sphere")
         self.assertEqual(args.size, 1.0)
         self.assertEqual(args.format, "ply")
 
-    def test_custom_args(self) -> None:
+    def test_generate_custom_args(self) -> None:
         parser = build_parser()
         args = parser.parse_args([
+            "generate",
             "--shape", "cube",
             "--size", "2.5",
             "--format", "obj",
@@ -266,6 +268,36 @@ class TestBuildParser(unittest.TestCase):
         self.assertEqual(args.format, "obj")
         self.assertEqual(args.output_dir, "/tmp/out")
         self.assertTrue(args.no_render)
+
+    def test_scan_default_args(self) -> None:
+        parser = build_parser()
+        args = parser.parse_args(["scan"])
+        self.assertEqual(args.mode, "scan")
+        self.assertEqual(args.camera_index, 0)
+        self.assertEqual(args.num_frames, 1)
+
+    def test_scan_custom_args(self) -> None:
+        parser = build_parser()
+        args = parser.parse_args([
+            "scan",
+            "--camera-index", "1",
+            "--num-frames", "5",
+            "--frame-width", "640",
+            "--frame-height", "480",
+            "--output-dir", "/tmp/scan_out",
+            "--prefix", "object",
+        ])
+        self.assertEqual(args.camera_index, 1)
+        self.assertEqual(args.num_frames, 5)
+        self.assertEqual(args.frame_width, 640)
+        self.assertEqual(args.frame_height, 480)
+        self.assertEqual(args.output_dir, "/tmp/scan_out")
+        self.assertEqual(args.prefix, "object")
+
+    def test_no_mode_returns_none(self) -> None:
+        parser = build_parser()
+        args = parser.parse_args([])
+        self.assertIsNone(args.mode)
 
 
 if __name__ == "__main__":
