@@ -1,5 +1,6 @@
 """Unit tests for the 3D object generator and provenance tracker."""
 
+import argparse
 import json
 import os
 import tempfile
@@ -229,15 +230,15 @@ class TestParseColor(unittest.TestCase):
         self.assertEqual(parse_color("0, 128, 255"), (0, 128, 255))
 
     def test_invalid_color_not_enough_values(self) -> None:
-        with self.assertRaises(Exception):
+        with self.assertRaises(argparse.ArgumentTypeError):
             parse_color("255,0")
 
     def test_invalid_color_out_of_range(self) -> None:
-        with self.assertRaises(Exception):
+        with self.assertRaises(argparse.ArgumentTypeError):
             parse_color("256,0,0")
 
     def test_invalid_color_text(self) -> None:
-        with self.assertRaises(Exception):
+        with self.assertRaises(argparse.ArgumentTypeError):
             parse_color("red")
 
 
