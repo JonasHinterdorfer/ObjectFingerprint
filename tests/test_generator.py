@@ -294,7 +294,7 @@ class TestBuildParser(unittest.TestCase):
         self.assertEqual(args.output_dir, "/tmp/scan_out")
         self.assertEqual(args.prefix, "object")
 
-    def test_no_mode_returns_none(self) -> None:
+    def test_no_mode_provided(self) -> None:
         parser = build_parser()
         args = parser.parse_args([])
         self.assertIsNone(args.mode)

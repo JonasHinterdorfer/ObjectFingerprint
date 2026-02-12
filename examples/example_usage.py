@@ -1,4 +1,4 @@
-"""Example usage of the 3D object fingerprinting project.
+"""Example usage of the 3D object scanning and generation project.
 
 Demonstrates how to use the camera scanner, generator, renderer, and
 provenance tracker programmatically (without the CLI).

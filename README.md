@@ -1,6 +1,6 @@
-# 3D Object Fingerprinting with Camera Scanning and W3C PROV Provenance Tracking
+# 3D Object Scanning and Generation with W3C PROV Provenance Tracking
 
-A Python project for 3D object fingerprinting through camera-based scanning and programmatic generation, with full W3C PROV-O provenance tracking. Scan real-world objects with a camera or generate colored 3D meshes (sphere, cube, cylinder), render them to 2D images, and create standards-compliant provenance records.
+A Python project for 3D object scanning and generation with full W3C PROV-O provenance tracking. Scan real-world objects with a camera or generate colored 3D meshes (sphere, cube, cylinder), render them to 2D images, and create standards-compliant provenance records.
 
 ## Features
 
